@@ -49,7 +49,7 @@ def get_means_and_stds(adatas):
     return means, stds
 
 
-def flexible_rescale(img, scale=.5, size=None):
+def flexible_rescale(img, scale=.5, size=None, antialias=True):
     if size is None:
         size = int(img.shape[-2] * scale), int(img.shape[-1] * scale)
 
@@ -59,7 +59,7 @@ def flexible_rescale(img, scale=.5, size=None):
     else:
         is_tensor = True
 
-    img = TF.resize(img, size=size)
+    img = TF.resize(img, size=size, antialias=antialias)
 
     if not is_tensor:
         img = img.numpy()
